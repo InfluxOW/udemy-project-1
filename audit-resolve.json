@@ -1,0 +1,66 @@
+{
+  "decisions": {
+    "1179|laravel-mix>babel-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>css-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>extract-text-webpack-plugin>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>file-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>html-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>img-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>postcss-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>style-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>vue-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>vue-loader>vue-style-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>webpack>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|sass-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|laravel-mix>webpack-cli>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|resolve-url-loader>adjust-sourcemap-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    },
+    "1179|resolve-url-loader>loader-utils>json5>minimist": {
+      "decision": "fix",
+      "madeAt": 1585134704034
+    }
+  },
+  "rules": {},
+  "version": 1
+}
