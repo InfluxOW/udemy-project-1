@@ -2,15 +2,6 @@
 
 @section('content')
 <div class="row">
-
-@if (Session::has('success'))
-<div class="container">
-    <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ Session::get('success') }}</strong>
-    </div>
-</div>
-@endif
     <div class="col-8">
     @forelse ($posts as $post)
     <p>

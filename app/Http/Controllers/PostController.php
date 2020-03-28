@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\BlogPost;
 use App\User;
 use App\Http\Requests\PostControllerValidation;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
@@ -22,10 +23,17 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::latest()->withCount('comments')->paginate(10);
-        $mostCommentedPosts = BlogPost::mostCommented()->take(5)->get();
-        $mostActiveUsers = User::withMostBlogPosts()->take(5)->get();
-        $mostActiveLastMonthUsers = User::withMostBlogPostsLastMonth()->take(5)->get();
+        $posts = BlogPost::latest()->withCount('comments')->with('user')->paginate(10);
+
+        $mostCommentedPosts = Cache::remember('mostCommentedPosts', now()->addHour(), function () {
+            return BlogPost::mostCommented()->take(5)->get();
+        });
+        $mostActiveUsers = Cache::remember('mostActiveUsers', now()->addHour(), function () {
+            return User::withMostBlogPosts()->take(5)->get();
+        });
+        $mostActiveLastMonthUsers = Cache::remember('mostActiveLastMonthUsers', now()->addHour(), function () {
+            return User::withMostBlogPostsLastMonth()->take(5)->get();
+        });
 
         return view('posts.index', compact('posts', 'mostCommentedPosts', 'mostActiveUsers', 'mostActiveLastMonthUsers'));
     }
@@ -55,7 +63,9 @@ class PostController extends Controller
         $user = $request->user();
         $post->user()->associate($user)->save();
 
-        return redirect()->route('posts.index')->with('success', 'Post was created successfully!');
+        flash('Post was created successfully!')->success()->important();
+
+        return redirect()->route('posts.show', $post);
     }
 
     /**
@@ -66,7 +76,13 @@ class PostController extends Controller
      */
     public function show(Blogpost $post)
     {
-        return view('posts.show', compact('post'));
+        $blogPost = Cache::remember("post-{$post->id}", now()->addHour(), function () use ($post) {
+            return $post;
+        });
+
+        $counter = watchersCount($post->id);
+
+        return view('posts.show', ['post' => $blogPost, 'counter' => $counter]);
     }
 
     /**
@@ -96,7 +112,9 @@ class PostController extends Controller
         $validatedData = $request->validated();
         $post->update($validatedData);
 
-        return redirect()->route('posts.index')->with('success', 'Post was updated successfully!');
+        flash('Post was updated successfully!')->success()->important();
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -108,8 +126,10 @@ class PostController extends Controller
     public function destroy(Blogpost $post)
     {
         $this->authorize($post);
-
         $post->delete();
-        return redirect()->route('posts.index')->with('success', 'Post was deleted successfully!');
+
+        flash('Post was deleted successfully!')->success()->important();
+
+        return redirect()->route('posts.index');
     }
 }

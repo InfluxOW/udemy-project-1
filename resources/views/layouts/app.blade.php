@@ -36,6 +36,7 @@
         </nav>
     </div>
 <div class="container px-5">
+    @include('flash::message')
 @yield('content')
 </div>
 <!-- Optional JavaScript -->

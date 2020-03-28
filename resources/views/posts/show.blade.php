@@ -11,6 +11,8 @@
     @component('components.creation-info', ['date' => $post->created_at, 'name' => $post->user->name])
     @endcomponent
 
+    <p>Current watchers: {{ $counter }}</p>
+
     <h4>Comments</h4>
     @if ($post->comments)
         @forelse ($post->comments as $comment)
@@ -21,15 +23,16 @@
             No comments yet!<br>
         @endforelse
     @endif
-
-    @can('update', $post)
-        <a href="{{ route('posts.edit', $post) }}" class="btn btn-primary"> Edit </a>
-    @endcan
-    @if (!$post->trashed())
-        @can('delete', $post)
-            <a href="{{ route('posts.destroy', $post) }}" data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="btn btn-primary">Delete</a>
+    @auth
+        @can('update', $post)
+            <a href="{{ route('posts.edit', $post) }}" class="btn btn-primary"> Edit </a>
         @endcan
-    @endif
+        @if (!$post->trashed())
+            @can('delete', $post)
+                <a href="{{ route('posts.destroy', $post) }}" data-confirm="Are you sure?" data-method="delete" rel="nofollow" class="btn btn-primary">Delete</a>
+            @endcan
+        @endif
+    @endauth
 
 
 

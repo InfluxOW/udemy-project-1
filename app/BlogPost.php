@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Scopes\DeletedAdminScope;
+use Illuminate\Support\Facades\Cache;
 
 class BlogPost extends Model
 {
@@ -39,7 +40,12 @@ class BlogPost extends Model
         parent::boot();
 
         static::deleting(function (BlogPost $blogPost) {
+            Cache::forget("post-{$blogPost->id}");
             $blogPost->comments()->delete();
+        });
+
+        static::updating(function (BlogPost $blogPost) {
+            Cache::forget("post-{$blogPost->id}");
         });
 
         static::restoring(function (BlogPost $blogPost) {
