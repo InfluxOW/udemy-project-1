@@ -37,7 +37,8 @@
     </div>
 <div class="container px-5">
     @include('flash::message')
-@yield('content')
+
+    @yield('content')
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,5 +1,5 @@
 <p class="text-muted">
-    {{ empty(trim($slot)) ? 'Created ' : $slot }} {{ $date->diffForHumans() }}
+    Created {{ $date->diffForHumans() }}
     @if (isset($name))
         by {{ $name }}
     @endif

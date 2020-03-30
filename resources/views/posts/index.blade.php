@@ -17,12 +17,10 @@
                 @endif
             </h3>
 
-            @component('components.creation-info', ['date' => $post->created_at, 'name' => $post->user->name])
-            @endcomponent
+            <x-creation-info :name="$post->user->name" :date="$post->created_at"/>
 
             @if ($post->tags->first())
-                @component('components.tags', ['tags' => $post->tags])
-                @endcomponent
+                <x-tags :tags="$post->tags"/>
             @endif
 
             @if ($post->comments_count)

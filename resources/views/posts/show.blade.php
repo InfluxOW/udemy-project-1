@@ -5,30 +5,15 @@
     <div class="col-8">
         <h1>
             {{ $post->title }}
-            @component('components.badge', ['show' => now()->diffInMinutes($post->created_at) < 50])
+            <x-badge :date="$post->created_at">
                 New!
-            @endcomponent
+            </x-badge>
         </h1>
         <p>{{ $post->content }}</p>
-        @component('components.creation-info', ['date' => $post->created_at, 'name' => $post->user->name])
-        @endcomponent
+        <x-creation-info :name="$post->user->name" :date="$post->created_at"/>
 
         @if ($post->tags->first())
-            @component('components.tags', ['tags' => $post->tags])
-            @endcomponent
-        @endif
-
-        <p>Current watchers: {{ $counter }}</p>
-
-        <h4>Comments</h4>
-        @if ($post->comments)
-            @forelse ($post->comments as $comment)
-                <p>{{ $comment->content }}</p>
-                @component('components.creation-info', ['date' => $comment->created_at, 'name' => $comment->user->name])
-                @endcomponent
-            @empty
-                No comments yet!<br>
-            @endforelse
+            <x-tags :tags="$post->tags"/>
         @endif
 
         @auth
@@ -41,6 +26,23 @@
                 @endcan
             @endif
         @endauth
+        
+        <br><br>
+
+        {{-- <p>Current watchers: {{ $counter }}</p> --}}
+
+        <h4>Comments</h4>
+
+        @include('comments._form')
+
+        @if ($post->comments)
+            @forelse ($post->comments as $comment)
+                <p>{{ $comment->content }}</p>
+                <x-creation-info :name="$comment->user->name" :date="$comment->created_at"/>
+            @empty
+                No comments yet!<br>
+            @endforelse
+        @endif
     </div>
 
     <div class="col-4 text-center">
