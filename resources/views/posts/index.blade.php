@@ -3,61 +3,45 @@
 @section('content')
 <div class="row">
     <div class="col-8">
-    @forelse ($posts as $post)
-    <p>
-        <h3>
-            @if ($post->trashed())
-                <del>
+        @forelse ($posts as $post)
+        <p>
+            <h3>
+                @if ($post->trashed())
+                    <del>
+                @endif
+                    <a class="{{$post->trashed() ? 'text-muted' : ''}}"
+                href="{{ route('posts.show', ['post' => $post->id]) }}"> {{ $post->title }}
+                    </a>
+                @if ($post->trashed())
+                    </del>
+                @endif
+            </h3>
+
+            @component('components.creation-info', ['date' => $post->created_at, 'name' => $post->user->name])
+            @endcomponent
+
+            @if ($post->tags->first())
+                @component('components.tags', ['tags' => $post->tags])
+                @endcomponent
             @endif
-                <a class="{{$post->trashed() ? 'text-muted' : ''}}"
-            href="{{ route('posts.show', ['post' => $post->id]) }}"> {{ $post->title }}
-                </a>
-            @if ($post->trashed())
-                </del>
+
+            @if ($post->comments_count)
+                {{ $post->comments_count }} {{ $post->comments_count == 1 ? 'comment' : 'comments' }}
+            @else
+                No comments yet!
             @endif
-        </h3>
 
-        @if ($post->comments_count)
-            {{ $post->comments_count }} {{ $post->comments_count == 1 ? 'comment' : 'comments' }}
-        @else
-            No comments yet!
-        @endif
+        </p>
+        @empty
+            <h3>No blog posts yet!</h3>
+        @endforelse
 
-        @component('components.creation-info', ['date' => $post->created_at, 'name' => $post->user->name])
-        @endcomponent
-
-    </p>
-    @empty
-        <h3>No blog posts yet!</h3>
-    @endforelse
-    <div>{{$posts->links()}}</div>
+        <div>{{$posts->links()}}</div>
     </div>
+
     <div class="col-4 text-center">
-        <div class="container">
-            <div class="row">
-                @component('components.card', ['title' => 'Most Commented Posts', 'subtitle' => 'What people are currently talking about?'])
-                    @slot('items')
-                        @foreach ($mostCommentedPosts as $post)
-                        <li class="list-group-item">
-                            <a href="{{ route('posts.show', compact('post')) }}">
-                                {{ $post->title }}
-                            </a>
-                        </li>
-                        @endforeach
-                    @endslot
-                @endcomponent
-            </div>
-            <div class="row mt-3">
-                @component('components.card', ['title' => 'Most Active Users', 'subtitle' => 'Users with the most posts!'])
-                    @slot('items', collect($mostActiveUsers)->pluck('name'));
-                @endcomponent
-            </div>
-            <div class="row mt-3">
-                @component('components.card', ['title' => 'Most Active Last Month Users', 'subtitle' => 'Users with the most posts last month!'])
-                    @slot('items', collect($mostActiveLastMonthUsers)->pluck('name'));
-                @endcomponent
-            </div>
-        </div>
+        @include('posts._activity')
     </div>
+
 </div>
 @endsection('content')

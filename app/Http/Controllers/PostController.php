@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\BlogPost;
 use App\User;
 use App\Http\Requests\PostControllerValidation;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -23,19 +21,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::latest()->withCount('comments')->with('user')->paginate(10);
+        $posts = BlogPost::latest()->withCount('comments')->with(['user', 'comments', 'tags'])->paginate(10);
 
-        $mostCommentedPosts = Cache::remember('mostCommentedPosts', now()->addHour(), function () {
-            return BlogPost::mostCommented()->take(5)->get();
-        });
-        $mostActiveUsers = Cache::remember('mostActiveUsers', now()->addHour(), function () {
-            return User::withMostBlogPosts()->take(5)->get();
-        });
-        $mostActiveLastMonthUsers = Cache::remember('mostActiveLastMonthUsers', now()->addHour(), function () {
-            return User::withMostBlogPostsLastMonth()->take(5)->get();
-        });
-
-        return view('posts.index', compact('posts', 'mostCommentedPosts', 'mostActiveUsers', 'mostActiveLastMonthUsers'));
+        return view('posts.index', compact('posts'));
     }
 
     /**

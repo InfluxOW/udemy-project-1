@@ -19,6 +19,11 @@ class BlogPost extends Model
         return $this->hasMany('App\Comment')->latest();
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

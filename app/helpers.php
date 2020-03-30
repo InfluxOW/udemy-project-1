@@ -3,8 +3,8 @@
 function watchersCount($id)
 {
     $sessionId = session()->getId();
-    $counterKey = "post-{$id}-counter";
-    $usersKey = "post-{$id}-users";
+    $counterKey = "blog-post-{$id}-counter";
+    $usersKey = "blog-post-{$id}-users";
 
     $users = Cache::get($usersKey, []);
     $usersUpdate = [];
