@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BlogPost;
-use App\User;
-use App\Http\Requests\PostControllerValidation;
+use App\Http\Requests\PostValidation;
 use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
@@ -21,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::latest()->withCount('comments')->with(['user', 'comments', 'tags'])->paginate(10);
+        $posts = BlogPost::latestWithRelations()->paginate(10);
 
         return view('posts.index', compact('posts'));
     }
@@ -40,16 +39,21 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\PostValidation $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostControllerValidation $request)
+    public function store(PostValidation $request)
     {
         $validatedData = $request->validated();
-        $post = Blogpost::make($validatedData);
+        $post = BlogPost::make($validatedData);
 
         $user = $request->user();
         $post->user()->associate($user)->save();
+
+        if ($request->hasFile('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $file->storeAs('thumbnails', "{$post->id}.{$file->guessExtension()}");
+        }
 
         flash('Post was created successfully!')->success()->important();
 
@@ -59,27 +63,27 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  BlogPost $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Blogpost $post)
+    public function show(BlogPost $post)
     {
         $blogPost = Cache::remember("post-{$post->id}", now()->addHour(), function () use ($post) {
             return $post;
         });
 
-        $counter = watchersCount($post->id);
+        // $counter = watchersCount($post->id);
 
-        return view('posts.show', ['post' => $blogPost, 'counter' => $counter]);
+        return view('posts.show', ['post' => $blogPost]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  BlogPost $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blogpost $post)
+    public function edit(BlogPost $post)
     {
         $this->authorize($post);
 
@@ -89,11 +93,11 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param  \Illuminate\Http\PostValidation $request
+     * @param  BlogPost $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostControllerValidation $request, Blogpost $post)
+    public function update(PostValidation $request, BlogPost $post)
     {
         $this->authorize($post);
 
@@ -108,10 +112,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  BlogPost $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blogpost $post)
+    public function destroy(BlogPost $post)
     {
         $this->authorize($post);
         $post->delete();

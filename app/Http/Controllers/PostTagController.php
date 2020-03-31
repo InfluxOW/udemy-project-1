@@ -16,7 +16,7 @@ class PostTagController extends Controller
     public function index($tagName)
     {
         $tag = Tag::where('name', $tagName)->first();
-        $posts = $tag->blogposts()->with(['user', 'comments', 'tags'])->paginate(10);
+        $posts = $tag->blogposts()->latestWithRelations()->paginate(10);
 
         return view('posts.index', compact('posts'));
     }

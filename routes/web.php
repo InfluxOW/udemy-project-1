@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@home')->name('home');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::get('/contact-secret', 'HomeController@contactSecret')->name('contact.secret')->middleware('can:contact.secret');
-Route::resource('/posts', 'PostController');
+Route::resource('posts', 'PostController');
 Auth::routes();
 Route::get('/posts/tag/{tag}', 'PostTagController@index')->name('posts.tags.index');
+Route::resource('posts.comments', 'PostCommentController')->only('store');

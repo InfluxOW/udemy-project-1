@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<x-errors/>
+
 <div class="row">
     <div class="col-8">
         <h1>
@@ -10,11 +12,14 @@
             </x-badge>
         </h1>
         <p>{{ $post->content }}</p>
-        <x-creation-info :name="$post->user->name" :date="$post->created_at"/>
 
-        @if ($post->tags->first())
-            <x-tags :tags="$post->tags"/>
-        @endif
+        <p>
+            @if ($post->tags->first())
+                <x-tags :tags="$post->tags"/>
+            @endif
+        </p>
+
+        <x-creation-info :name="$post->user->name" :date="$post->created_at"/>
 
         @auth
             @can('update', $post)
@@ -26,17 +31,16 @@
                 @endcan
             @endif
         @endauth
-        
-        <br><br>
 
         {{-- <p>Current watchers: {{ $counter }}</p> --}}
 
+        <hr>
         <h4>Comments</h4>
 
         @include('comments._form')
 
-        @if ($post->comments)
-            @forelse ($post->comments as $comment)
+        @if ($post->comments())
+            @forelse ($post->comments()->with('user')->get() as $comment)
                 <p>{{ $comment->content }}</p>
                 <x-creation-info :name="$comment->user->name" :date="$comment->created_at"/>
             @empty
