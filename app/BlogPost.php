@@ -29,6 +29,11 @@ class BlogPost extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function image()
+    {
+        return $this->hasOne('App\Image');
+    }
+
     public function scopeLatest(Builder $query)
     {
         return $query->orderBy(static::CREATED_AT, 'desc');

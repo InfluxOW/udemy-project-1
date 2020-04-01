@@ -2,16 +2,24 @@
 
 @section('content')
 <x-errors/>
-
 <div class="row">
     <div class="col-8">
-        <h1>
-            {{ $post->title }}
-            <x-badge :date="$post->created_at">
-                New!
-            </x-badge>
-        </h1>
-        <p>{{ $post->content }}</p>
+        <div class="polaroid-post">
+            <div class="container">
+                <h1>
+                    <div class="text-center">{{ $post->title }}</div>
+                    <x-badge :date="$post->created_at">
+                        New!
+                    </x-badge>
+                </h1>
+            </div>
+            @if ($post->image)
+                <img src="{{ $post->image->url() }}"style="width:100%">
+            @endif
+        </div>
+        <div class="container">
+            <p class="text-center">{{ $post->content }}</p>
+        </div>
 
         <p>
             @if ($post->tags->first())

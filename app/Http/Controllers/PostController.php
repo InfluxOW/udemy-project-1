@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\BlogPost;
 use App\Http\Requests\PostValidation;
+use App\Image;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -51,8 +53,9 @@ class PostController extends Controller
         $post->user()->associate($user)->save();
 
         if ($request->hasFile('thumbnail')) {
-            $file = $request->file('thumbnail');
-            $file->storeAs('thumbnails', "{$post->id}.{$file->guessExtension()}");
+            $path = $request->file('thumbnail')->store('thumbnails');
+            $image = Image::make(['path' => $path]);
+            $post->image()->save($image);
         }
 
         flash('Post was created successfully!')->success()->important();
