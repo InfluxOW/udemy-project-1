@@ -31,12 +31,14 @@ class PostValidation extends FormRequest
                 return [
                     'title' => 'required|unique:blog_posts|min:10',
                     'content' => 'required|max:1000',
+                    'thumbnail' => 'image|mimes:jpeg,jpg,png,gif,svg|max:2048'
                 ];
             case 'PUT':
             case 'PATCH':
                 return [
                     'title' => 'required|min:10|unique:blog_posts,title,' . $this->post->id,
                     'content' => 'required|max:1000',
+                    'thumbnail' => 'image|mimes:jpeg,jpg,png,gif,svg|max:2048'
                 ];
             default:
                 break;

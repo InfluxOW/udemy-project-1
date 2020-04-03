@@ -19,7 +19,7 @@
                 @endif
             </h3>
 
-            <x-creation-info :name="$post->user->name" :date="$post->created_at"/>
+            <x-creation-info :model="$post"/>
 
             @if ($post->tags->first())
                 <x-tags :tags="$post->tags"/>

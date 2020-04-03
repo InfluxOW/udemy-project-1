@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
-use App\BlogPost;
 use App\Http\Requests\CommentValidation;
+use App\User;
 
-class PostCommentController extends Controller
+class UserCommentController extends Controller
 {
     public function __construct()
     {
@@ -19,13 +19,13 @@ class PostCommentController extends Controller
      * @param  \Illuminate\Http\CommentValidation  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentValidation $request, BlogPost $post)
+    public function store(CommentValidation $request, User $user)
     {
         $validatedData = $request->validated();
         $comment = Comment::make($validatedData);
-        $user = $request->user();
-        $comment->user()->associate($user);
-        $comment->commentable()->associate($post);
+        $authorizedUser = $request->user();
+        $comment->user()->associate($authorizedUser);
+        $comment->commentable()->associate($user);
         $comment->save();
 
         flash('Comment was created successfully!')->success()->important();

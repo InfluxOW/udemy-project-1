@@ -16,7 +16,7 @@ class BlogPost extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Comment')->latest();
+        return $this->morphMany('App\Comment', 'commentable')->latest();
     }
 
     public function tags()
@@ -31,7 +31,7 @@ class BlogPost extends Model
 
     public function image()
     {
-        return $this->hasOne('App\Image');
+        return $this->morphOne('App\Image', 'imageable');
     }
 
     public function scopeLatest(Builder $query)

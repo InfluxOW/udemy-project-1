@@ -13,9 +13,9 @@ class Comment extends Model
 
     protected $fillable = ['created_at', 'content'];
 
-    public function blogPost()
+    public function commentable()
     {
-        return $this->belongsTo('App\BlogPost');
+        return $this->morphTo();
     }
 
     public function user()
@@ -33,17 +33,19 @@ class Comment extends Model
         parent::boot();
 
         static::creating(function (Comment $comment) {
-            Cache::forget("post-{$comment->blogPost->id}");
+            Cache::forget("post-{$comment->commentable->id}");
             Cache::forget("mostCommentedPosts");
         });
 
         static::updating(function (Comment $comment) {
-            Cache::forget("post-{$comment->blogPost->id}");
+            Cache::forget("post-{$comment->commentable->id}");
         });
 
         static::deleting(function (Comment $comment) {
-            Cache::forget("post-{$comment->blogPost->id}");
-            Cache::forget("mostCommentedPosts");
+            if ($comment->commentable_type == 'App\BlogPost') {
+                Cache::forget("post-{$comment->commentabl->id}");
+                Cache::forget("mostCommentedPosts");
+            }
         });
     }
 }

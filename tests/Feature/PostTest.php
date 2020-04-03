@@ -36,7 +36,7 @@ class PostTest extends TestCase
     {
         $params = ['title' => 'test title', 'content' => 'test content'];
         $this->actingAs($this->user())
-            ->post(route('posts.index', $params))
+            ->post(route('posts.store'), $params)
             ->assertStatus(302)
             ->assertSessionHasNoErrors();
     }
@@ -56,7 +56,7 @@ class PostTest extends TestCase
 
         $editedParams = ['title' => 'edited test title', 'content' => 'edited test content'];
         $this->actingAs($post->user)
-            ->put(route('posts.update', $post), $editedParams)
+            ->patch(route('posts.update', $post), $editedParams)
             ->assertStatus(302)
             ->assertSessionHasNoErrors();
         $this->assertDatabaseHas("blog_posts", $editedParams);
@@ -74,11 +74,16 @@ class PostTest extends TestCase
         $this->assertSoftDeleted("blog_posts", ['id' => $post->id]);
     }
 
-    private function createTestBlogPost($userId = null): BlogPost
+    private function createTestBlogPost(): BlogPost
     {
         $post = factory(BlogPost::class)->create();
         $user = factory(User::class)->create();
+        $comment = factory(Comment::class)->make();
+
         $post->user()->associate($user)->save();
+
+        $comment->user()->associate($user);
+        $comment->commentable()->associate($post)->save();
         return $post;
     }
 }

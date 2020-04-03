@@ -1,6 +1,4 @@
 <p class="text-muted">
-    Created {{ $date->diffForHumans() }}
-    @if (isset($name))
-        by {{ $name }}
-    @endif
+    Created {{ $model->created_at->diffForHumans() }}
+    by <a href="{{ route('users.show', ['user' => $model->user]) }}"> {{ $model->user->name }} </a>
 </p>

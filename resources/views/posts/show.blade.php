@@ -7,10 +7,11 @@
         <div class="polaroid-post">
             <div class="container">
                 <h1>
-                    <div class="text-center">{{ $post->title }}</div>
-                    <x-badge :date="$post->created_at">
-                        New!
-                    </x-badge>
+                    <div class="text-center">{{ $post->title }}
+                        <x-badge :date="$post->created_at">
+                            New!
+                        </x-badge>
+                    </div>
                 </h1>
             </div>
             @if ($post->image)
@@ -27,7 +28,7 @@
             @endif
         </p>
 
-        <x-creation-info :name="$post->user->name" :date="$post->created_at"/>
+        <x-creation-info :model="$post"/>
 
         @auth
             @can('update', $post)
@@ -45,17 +46,12 @@
         <hr>
         <h4>Comments</h4>
 
-        @include('comments._form')
 
-        @if ($post->comments())
-            @forelse ($post->comments()->with('user')->get() as $comment)
-                <p>{{ $comment->content }}</p>
-                <x-creation-info :name="$comment->user->name" :date="$comment->created_at"/>
-            @empty
-                No comments yet!<br>
-            @endforelse
-        @endif
+        <x-comment-form :route="route('posts.comments.store', compact('post'))"/>
+        <x-comment-list :item="$post"/>
+
     </div>
+
 
     <div class="col-4 text-center">
         @include('posts._activity')
