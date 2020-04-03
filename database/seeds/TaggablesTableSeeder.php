@@ -4,7 +4,7 @@ use App\BlogPost;
 use App\Tag;
 use Illuminate\Database\Seeder;
 
-class BlogPostTagTableSeeder extends Seeder
+class TaggablesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
