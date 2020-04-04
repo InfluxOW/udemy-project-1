@@ -8,11 +8,11 @@ class Tag extends Model
 {
     public function blogPosts()
     {
-        return $this->morphByMany('App\BlogPost', 'taggable')->withTimestamps();
+        return $this->morphedByMany('App\BlogPost', 'taggable')->withTimestamps();
     }
 
     public function comments()
     {
-        return $this->morphByMany('App\Comment', 'taggable')->withTimestamps();
+        return $this->morphedByMany('App\Comment', 'taggable')->withTimestamps();
     }
 }

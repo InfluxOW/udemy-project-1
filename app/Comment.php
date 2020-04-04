@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Taggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Cache;
 class Comment extends Model
 {
     use SoftDeletes;
+    use Taggable;
 
     protected $fillable = ['created_at', 'content'];
 
@@ -21,11 +23,6 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
-    }
-
-    public function tags()
-    {
-        return $this->morphToMany('App\Tag', 'taggable')->withTimestamps();
     }
 
     public function scopeLatest(Builder $query)

@@ -7,21 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Scopes\DeletedAdminScope;
 use Illuminate\Support\Facades\Cache;
+use App\Traits\Taggable;
 
 class BlogPost extends Model
 {
     use SoftDeletes;
+    use Taggable;
 
     protected $fillable = ['title', 'content', 'created_at'];
 
     public function comments()
     {
         return $this->morphMany('App\Comment', 'commentable')->latest();
-    }
-
-    public function tags()
-    {
-        return $this->morphToMany('App\Tag', 'taggable')->withTimestamps();
     }
 
     public function user()
