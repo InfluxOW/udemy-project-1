@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\BlogPost;
 use App\Http\Requests\CommentValidation;
+use App\Mail\CommentPosted;
+use App\Mail\CommentPostedMarkdown;
+use Illuminate\Support\Facades\Mail;
 
 class PostCommentController extends Controller
 {
@@ -27,6 +30,8 @@ class PostCommentController extends Controller
         $comment->user()->associate($user);
         $comment->commentable()->associate($post);
         $comment->save();
+
+        Mail::to($post->user)->send(new CommentPostedMarkdown($comment));
 
         flash('Comment was created successfully!')->success()->important();
 
