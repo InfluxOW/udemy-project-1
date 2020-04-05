@@ -31,6 +31,8 @@ class BlogPost extends Model
         return $this->morphOne('App\Image', 'imageable');
     }
 
+    //Scopes
+
     public function scopeLatest(Builder $query)
     {
         return $query->orderBy(static::CREATED_AT, 'desc');
@@ -45,6 +47,8 @@ class BlogPost extends Model
     {
         return $query->withCount('comments')->orderBy('comments_cound', 'desc');
     }
+
+    //Boot
 
     public static function boot()
     {

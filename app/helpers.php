@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
+
 function watchersCount($id)
 {
     $sessionId = session()->getId();
@@ -33,4 +35,15 @@ function watchersCount($id)
     }
 
     return Cache::get($counterKey);
+}
+
+function getUsersExcept(Collection $collection, array $except)
+{
+    return $collection->map(function ($item) {
+        return $item->user;
+    })
+    ->unique()
+    ->filter(function ($itemOwner) use ($except) {
+        return !in_array($itemOwner->id, $except);
+    });
 }

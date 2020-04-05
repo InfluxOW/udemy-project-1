@@ -1,17 +1,16 @@
 @component('mail::message')
-# You have new comment!
+# Post that you've commented has new comment!
 
-Hi {{ $comment->commentable->user->name }}!
+Hi {{ $user->name }}!
 
-New comment has been added to your blog post "{{ $comment->commentable->title }}".
+New comment has been added to the blog post "{{ $comment->commentable->title }}" where you've left a comment.
 
 @component('mail::button', ['url' => route('posts.show', ['post' => $comment->commentable])])
-your blogpost
+the blogpost
 @endcomponent
 
-{{-- <img src="{{ $message->embed(storage_path("app/public") . '/' . $comment->user->image->path) }}" width=128 height=128> --}}
 @component('mail::button', ['url' => route('users.show', ['user' => $comment->user])])
-author profile
+comment's author profile
 @endcomponent
 
 @component('mail::panel')

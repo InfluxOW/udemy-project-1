@@ -28,5 +28,4 @@ trait Taggable
 
         return Tag::whereIn('name', $tags[1] ?? [])->get();
     }
-
 }

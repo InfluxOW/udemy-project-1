@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\BlogPost;
 use App\Http\Requests\CommentValidation;
-use App\Mail\CommentPosted;
-use App\Mail\CommentPostedMarkdown;
-use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendMail;
+use App\Mail\NotifyOwnerPostWasCommented;
+use App\Mail\NotifyUserPostWasCommented;
+use App\User;
 
 class PostCommentController extends Controller
 {
@@ -31,7 +32,14 @@ class PostCommentController extends Controller
         $comment->commentable()->associate($post);
         $comment->save();
 
-        Mail::to($post->user)->send(new CommentPostedMarkdown($comment));
+        //Sending emails
+        //1) to post owner
+        SendMail::dispatch($post->user, new NotifyOwnerPostWasCommented($comment))->onQueue('high');
+        //2) to every user who commented the post except owner
+        $usersExceptCommentAuthor = getUsersExcept($post->comments, [$user->id]);
+        $usersExceptCommentAuthor->map(function (User $user) use ($comment) {
+            SendMail::dispatch($user, new NotifyUserPostWasCommented($comment, $user))->onQueue('low');
+        });
 
         flash('Comment was created successfully!')->success()->important();
 

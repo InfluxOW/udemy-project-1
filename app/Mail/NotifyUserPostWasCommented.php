@@ -3,25 +3,30 @@
 namespace App\Mail;
 
 use App\Comment;
+use App\Jobs\SendMail;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CommentPosted extends Mailable
+class NotifyUserPostWasCommented extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $comment;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Comment $comment)
+    public function __construct(Comment $comment, User $user)
     {
         $this->comment = $comment;
+        $this->user = $user;
     }
 
     /**
@@ -31,12 +36,10 @@ class CommentPosted extends Mailable
      */
     public function build()
     {
-        $subject = "Comment has been added to your \"{$this->comment->commentable->title}\" blog post!";
+        $subject = "Comment has been added to the \"{$this->comment->commentable->title}\" blog post you've commented!";
 
         return $this
-            // ->attach(storage_path("app/public/{$this->comment->user->image->path}"), ['as' => 'profile_picture.jpg', 'mime' => 'image/jpeg'])
-            ->attachFromStorage($this->comment->user->image->path, 'profile_picture.jpg', ['mime' => 'image/jpeg'])
             ->subject($subject)
-            ->view('emails.posts.commented');
+            ->markdown('emails.posts.new-comment-on-commented-post');
     }
 }
