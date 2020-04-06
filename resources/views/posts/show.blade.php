@@ -41,8 +41,6 @@
             @endif
         @endauth
 
-        {{-- <p>Current watchers: {{ $counter }}</p> --}}
-
         <hr>
         <h4>Comments</h4>
 

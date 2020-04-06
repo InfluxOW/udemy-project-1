@@ -2,8 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Comment;
-use App\Mail\CommentPostedMarkdown;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,15 +40,5 @@ class SendMail implements ShouldQueue
     public function handle()
     {
         Mail::to($this->user)->send($this->mail);
-    }
-
-    public function middleware()
-    {
-        $rateLimitedMiddleware = (new RateLimited())
-            ->allow(5)
-            ->everySeconds(10)
-            ->releaseAfterSeconds(30);
-
-        return [$rateLimitedMiddleware];
     }
 }

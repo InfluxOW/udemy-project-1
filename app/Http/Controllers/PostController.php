@@ -75,8 +75,6 @@ class PostController extends Controller
             return $post;
         });
 
-        // $counter = watchersCount($post->id);
-
         return view('posts.show', ['post' => $blogPost]);
     }
 
