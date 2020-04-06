@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Events\CommentPosted;
+use App\Events\PostCreated;
+use App\Listeners\CacheSubscriber;
+use App\Listeners\NotifyAdminPostCreated;
 use App\Listeners\NotifyUsersAboutComment;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,6 +26,13 @@ class EventServiceProvider extends ServiceProvider
         CommentPosted::class => [
             NotifyUsersAboutComment::class,
         ],
+        PostCreated::class => [
+            NotifyAdminPostCreated::class,
+        ],
+    ];
+
+    protected $subscribe = [
+        CacheSubscriber::class
     ];
 
     /**

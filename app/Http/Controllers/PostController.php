@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BlogPost;
+use App\Events\PostCreated;
 use App\Http\Requests\PostValidation;
 use App\Image;
 use Illuminate\Support\Facades\Cache;
@@ -57,6 +58,8 @@ class PostController extends Controller
             $image = Image::make(['path' => $path]);
             $post->image()->save($image);
         }
+
+        event(new PostCreated($post));
 
         flash('Post was created successfully!')->success()->important();
 
