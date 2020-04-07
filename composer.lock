@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0aacf0160e68b2b063c7101b9d092faa",
+    "content-hash": "8b61b60839fc93a05aa9885735e802b5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -102,6 +102,80 @@
                 "math"
             ],
             "time": "2020-02-17T13:57:43+00:00"
+        },
+        {
+            "name": "cyrildewit/eloquent-viewable",
+            "version": "v5.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cyrildewit/eloquent-viewable.git",
+                "reference": "a2653b8e6c62d53b0014eb1765cc41f5df93eac7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cyrildewit/eloquent-viewable/zipball/a2653b8e6c62d53b0014eb1765cc41f5df93eac7",
+                "reference": "a2653b8e6c62d53b0014eb1765cc41f5df93eac7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cache": "^6.0|^7.0",
+                "illuminate/contracts": "^6.0|^7.0",
+                "illuminate/cookie": "^6.0|^7.0",
+                "illuminate/database": "^6.0|^7.0",
+                "illuminate/http": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "jaybizzle/crawler-detect": "^1.0",
+                "nesbot/carbon": "^2.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "illuminate/config": "^6.0|^7.0",
+                "mockery/mockery": "^1.2.4",
+                "orchestra/testbench": "^4.0|^5.0",
+                "phpunit/phpunit": "^8.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CyrildeWit\\EloquentViewable\\EloquentViewableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CyrildeWit\\EloquentViewable\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cyril de Wit",
+                    "email": "info@cyrildewit.nl",
+                    "homepage": "http://cyrildewit.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel package that allows you to associate views with Eloquent models",
+            "homepage": "https://github.com/cyrildewit/eloquent-viewable",
+            "keywords": [
+                "counter",
+                "cyrildewit",
+                "eloquent",
+                "hits",
+                "laravel",
+                "viewable",
+                "views",
+                "visitable",
+                "visits"
+            ],
+            "time": "2020-03-28T13:57:17+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1027,6 +1101,55 @@
             "description": "Highlight PHP code in terminal",
             "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "jaybizzle/crawler-detect",
+            "version": "v1.2.94",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JayBizzle/Crawler-Detect.git",
+                "reference": "fbd4c12741583fb9d8f0bcbf65248a34eed68fc9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/fbd4c12741583fb9d8f0bcbf65248a34eed68fc9",
+                "reference": "fbd4c12741583fb9d8f0bcbf65248a34eed68fc9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8|^5.5|^6.5",
+                "satooshi/php-coveralls": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jaybizzle\\CrawlerDetect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Beech",
+                    "email": "m@rkbee.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CrawlerDetect is a PHP class for detecting bots/crawlers/spiders via the user agent",
+            "homepage": "https://github.com/JayBizzle/Crawler-Detect/",
+            "keywords": [
+                "crawler",
+                "crawler detect",
+                "crawler detector",
+                "crawlerdetect",
+                "php crawler detect"
+            ],
+            "time": "2020-02-20T21:42:59+00:00"
         },
         {
             "name": "laracasts/flash",
@@ -2337,56 +2460,6 @@
                 "uuid"
             ],
             "time": "2020-03-29T20:13:32+00:00"
-        },
-        {
-            "name": "spatie/laravel-rate-limited-job-middleware",
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-rate-limited-job-middleware.git",
-                "reference": "ea050efcbe8374ca09dacddf54e623f6a71d6098"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-rate-limited-job-middleware/zipball/ea050efcbe8374ca09dacddf54e623f6a71d6098",
-                "reference": "ea050efcbe8374ca09dacddf54e623f6a71d6098",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/redis": "^6.0|^7.0",
-                "php": "^7.3"
-            },
-            "require-dev": {
-                "mockery/mockery": "1.3.1",
-                "orchestra/testbench": "^4.0|^5.0",
-                "phpunit/phpunit": "^8.2|^9.0",
-                "symfony/var-dumper": "^4.3|^5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\RateLimitedMiddleware\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A middleware that can rate limit jobs",
-            "homepage": "https://github.com/spatie/laravel-rate-limited-job-middleware",
-            "keywords": [
-                "laravel-rate-limited-job-middleware",
-                "spatie"
-            ],
-            "time": "2020-03-02T21:36:38+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -6016,6 +6089,56 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03T07:35:21+00:00"
+        },
+        {
+            "name": "spatie/laravel-rate-limited-job-middleware",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-rate-limited-job-middleware.git",
+                "reference": "ea050efcbe8374ca09dacddf54e623f6a71d6098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-rate-limited-job-middleware/zipball/ea050efcbe8374ca09dacddf54e623f6a71d6098",
+                "reference": "ea050efcbe8374ca09dacddf54e623f6a71d6098",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/redis": "^6.0|^7.0",
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "1.3.1",
+                "orchestra/testbench": "^4.0|^5.0",
+                "phpunit/phpunit": "^8.2|^9.0",
+                "symfony/var-dumper": "^4.3|^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\RateLimitedMiddleware\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A middleware that can rate limit jobs",
+            "homepage": "https://github.com/spatie/laravel-rate-limited-job-middleware",
+            "keywords": [
+                "laravel-rate-limited-job-middleware",
+                "spatie"
+            ],
+            "time": "2020-03-02T21:36:38+00:00"
         },
         {
             "name": "symfony/debug",

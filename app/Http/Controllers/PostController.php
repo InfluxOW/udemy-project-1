@@ -6,6 +6,7 @@ use App\BlogPost;
 use App\Events\PostCreated;
 use App\Http\Requests\PostValidation;
 use App\Image;
+use CyrildeWit\EloquentViewable\Support\Period;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
@@ -78,7 +79,10 @@ class PostController extends Controller
             return $post;
         });
 
-        return view('posts.show', ['post' => $blogPost]);
+        views($blogPost)->record();
+        $viewsTotal = views($post)->remember()->count();
+
+        return view('posts.show', ['post' => $blogPost, 'viewsTotal' => $viewsTotal]);
     }
 
     /**

@@ -6,15 +6,18 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Scopes\DeletedAdminScope;
-use Illuminate\Support\Facades\Cache;
 use App\Traits\Taggable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class BlogPost extends Model
+class BlogPost extends Model implements Viewable
 {
     use SoftDeletes;
     use Taggable;
+    use InteractsWithViews;
 
     protected $fillable = ['title', 'content', 'created_at'];
+    protected $removeViewsOnDelete = true;
 
     public function comments()
     {

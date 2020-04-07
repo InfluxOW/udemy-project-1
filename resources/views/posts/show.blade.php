@@ -22,13 +22,23 @@
             <p class="text-center">{{ $post->content }}</p>
         </div>
 
+        <div class="row">
+            <div class="col-10">
+                <x-creation-info :model="$post"/>
+            </div>
+            <div class="col-2">
+                <div class="badge">
+                    <img src="../storage/icons/views.png" class="img-fluid icon"> {{ $viewsTotal }}
+                </div>
+            </div>
+        </div>
+
+
         <p>
             @if ($post->tags->first())
                 <x-tags :tags="$post->tags"/>
             @endif
         </p>
-
-        <x-creation-info :model="$post"/>
 
         @auth
             @can('update', $post)

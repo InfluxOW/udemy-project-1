@@ -10897,3 +10897,8 @@ a.text-dark:focus {
   height: 128px;
 }
 
+.icon {
+  width: 15px;
+  height: 15px;
+}
+

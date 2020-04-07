@@ -47,5 +47,6 @@
     "Post was deleted successfully!": "Пост был успешно удалён!",
     "Post was updated successfully!": "Пост был успешно изменён!",
     "User was updated successfully!": "Пользователь был успешно изменён!",
-    "Language": "Язык"
+    "Language": "Язык",
+    "Unique views in the last 24h": "Уникальные просмотры за 24 часа"
 }
