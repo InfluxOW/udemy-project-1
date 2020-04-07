@@ -1,8 +1,8 @@
 @component('mail::message')
-# New post was created!
+# {{ __('New post was created!') }}
 
-Check if it's correct.
+{{ __("Check if it's correct.") }}
 
-Thanks,<br>
+{{ __('Thanks') }},<br>
 {{ config('app.name') }}
 @endcomponent

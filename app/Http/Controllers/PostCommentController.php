@@ -6,9 +6,6 @@ use App\Comment;
 use App\BlogPost;
 use App\Events\CommentPosted;
 use App\Http\Requests\CommentValidation;
-use App\Jobs\NotifyUsersPostWasCommented;
-use App\Jobs\SendMail;
-use App\Mail\NotifyOwnerPostWasCommented;
 
 class PostCommentController extends Controller
 {
@@ -34,7 +31,7 @@ class PostCommentController extends Controller
 
         event(new CommentPosted($comment));
 
-        flash('Comment was created successfully!')->success()->important();
+        flash(__('Comment was created successfully!'))->success()->important();
 
         return redirect()->back();
     }

@@ -4,6 +4,6 @@
         <x-tags :tags="$comment->tags"/>
         <x-creation-info :model="$comment"/>
     @empty
-        No comments yet!<br>
+        {{ __('No comments yet!') }}<br>
     @endforelse
 @endif

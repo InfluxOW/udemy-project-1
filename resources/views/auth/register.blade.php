@@ -3,7 +3,7 @@
 @section('content')
 {{Form::open(['url' => route('register'), 'method' => 'POST'])}}
     <div class="form-group col-lg mb-2 my-3">
-    {{Form::label('name', 'Name')}}
+    {{Form::label('name', __('Name'))}}
     {{Form::text('name', '', ['class' => $errors->has('name') ? 'form-control is-invalid' : 'form-control' ])}}
     @if ($errors->has('name'))
         <span class="invalid-feedback">
@@ -14,7 +14,7 @@
     @endif
     </div>
     <div class="form-group col-lg mb-2 my-3">
-    {{Form::label('email', 'E-mail')}}
+    {{Form::label('email', __('E-mail'))}}
     {{Form::email('email', '', ['class' => $errors->has('email') ? 'form-control is-invalid' : 'form-control'])}}
     @if ($errors->has('email'))
         <span class="invalid-feedback">
@@ -25,7 +25,7 @@
     @endif
     </div>
     <div class="form-group col-lg mb-2 my-3">
-    {{Form::label('password', 'Password')}}
+    {{Form::label('password', __('Password'))}}
     {{Form::password('password', ['class' => $errors->has('password') ? 'form-control is-invalid' : 'form-control'])}}
     @if ($errors->has('password'))
         <span class="invalid-feedback">
@@ -36,11 +36,11 @@
     @endif
     </div>
     <div class="form-group col-lg mb-2 my-3">
-    {{Form::label('password_confirmation', 'Password Confirmation')}}
+    {{Form::label('password_confirmation', __('Password Confirmation'))}}
     {{Form::password('password_confirmation', ['class' => "form-control"])}}
     </div>
     <div class="form-group col-lg mb-2 my-3">
-    {{Form::submit('Register', ['class' => 'btn btn-primary btn-block'])}}
+    {{Form::submit(__('Register'), ['class' => 'btn btn-primary btn-block'])}}
     </div>
 {{Form::close()}}
 @endsection

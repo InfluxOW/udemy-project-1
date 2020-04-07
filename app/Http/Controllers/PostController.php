@@ -61,7 +61,7 @@ class PostController extends Controller
 
         event(new PostCreated($post));
 
-        flash('Post was created successfully!')->success()->important();
+        flash(__('Post was created successfully!'))->success()->important();
 
         return redirect()->route('posts.show', $post);
     }
@@ -120,7 +120,7 @@ class PostController extends Controller
             $post->image()->save($image);
         }
 
-        flash('Post was updated successfully!')->success()->important();
+        flash(__('Post was updated successfully!'))->success()->important();
 
         return redirect()->route('posts.show', $post);
     }
@@ -136,7 +136,7 @@ class PostController extends Controller
         $this->authorize($post);
         $post->delete();
 
-        flash('Post was deleted successfully!')->success()->important();
+        flash(__('Post was deleted successfully!'))->success()->important();
 
         return redirect()->route('posts.index');
     }

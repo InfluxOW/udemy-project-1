@@ -2,7 +2,7 @@
     @auth
     {{ Form::open(['url' => $route])  }}
         {{ Form::textarea('content', '', ['class' => 'form-control', 'rows' => 3]) }}<br>
-        {{ Form::submit('Add comment', ['class' => 'btn btn-primary btn-block']) }}
+        {{ Form::submit(__('Add comment'), ['class' => 'btn btn-primary btn-block']) }}
     {{ Form::close() }}
     @else
         <br>

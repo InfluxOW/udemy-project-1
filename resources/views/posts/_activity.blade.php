@@ -13,11 +13,11 @@
         </x-card>
     </div>
     <div class="row mt-3">
-        <x-card title="Most Active Users" subtitle="Users with the most posts!"
+        <x-card title="Most Active Users" subtitle="Users with the most posts"
         :items="collect($mostActiveUsers)->pluck('name')"/>
     </div>
     <div class="row mt-3">
-        <x-card title="Most Active Last Month Users" subtitle="Users with the most posts last month!"
+        <x-card title="Most Active Last Month Users" subtitle="Users with the most posts last month"
         :items="collect($mostActiveLastMonthUsers)->pluck('name')"/>
     </div>
 </div>

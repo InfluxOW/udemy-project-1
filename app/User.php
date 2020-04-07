@@ -11,13 +11,18 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public const LOCALES = [
+        'en' => 'English',
+        'ru' => 'Русский'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_admin'
+        'name', 'email', 'password', 'is_admin', 'locale'
     ];
 
     /**

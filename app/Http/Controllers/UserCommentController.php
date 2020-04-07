@@ -28,7 +28,7 @@ class UserCommentController extends Controller
         $comment->commentable()->associate($user);
         $comment->save();
 
-        flash('Comment was created successfully!')->success()->important();
+        flash(__('Comment was created successfully!'))->success()->important();
 
         return redirect()->back();
     }

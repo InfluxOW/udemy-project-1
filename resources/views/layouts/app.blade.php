@@ -27,6 +27,12 @@
                 <a class="p-2 text-dark" href="{{ route('register') }}">{{ __('Register') }}</a>
                 <a class="p-2 text-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
             @else
+                <a class="p-2 text-dark" href="{{ route('users.show', ['user' => Auth::user()]) }}">
+                    {{ __('Profile') }}
+                </a>
+                <a class="p-2 text-dark" href="{{ route('users.edit', ['user' => Auth::user()]) }}">
+                    {{ __('Edit profile') }}
+                </a>
                 <a class="p-2 text-dark" href="{{ route('logout') }}"
                 onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                 >{{ __('Logout') }} ({{ Auth::user()->name }})</a>

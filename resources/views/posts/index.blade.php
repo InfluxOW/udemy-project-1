@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-8">
-        @forelse ($posts as $post)
+        @foreach ($posts as $post)
         <p>
             <h3>
                 @if ($post->trashed())
@@ -25,16 +25,12 @@
                 <x-tags :tags="$post->tags"/>
             @endif
 
-            @if ($post->comments_count)
-                {{ $post->comments_count }} {{ $post->comments_count == 1 ? 'comment' : 'comments' }}
-            @else
-                No comments yet!
-            @endif
+            <p>
+                {{ trans_choice('messages.comments', $post->comments_count) }}
+            </p>
 
         </p>
-        @empty
-            <h3>No blog posts yet!</h3>
-        @endforelse
+        @endforeach
 
         <div>{{$posts->links()}}</div>
     </div>

@@ -57,7 +57,17 @@ class UserController extends Controller
             $user->image()->save($image);
         }
 
-        flash('User was updated successfully!')->success()->important();
+        if ($request->locale != $user->locale) {
+            $user->update(['locale' => $request->locale]);
+        }
+
+        if ($request->name != $user->name) {
+            $user->update(['name' => $request->name]);
+        }
+
+        if (!empty($user->getChanges())) {
+            flash(__('User was updated successfully!'))->success()->important();
+        }
 
         return redirect()->route('users.show', $user);
     }

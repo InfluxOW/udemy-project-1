@@ -1,23 +1,23 @@
 @component('mail::message')
-# You have new comment!
+# {{ __('You have new comment!') }}
 
-Hi {{ $comment->commentable->user->name }}!
+{{ __('Hi') }} {{ $comment->commentable->user->name }}!
 
-New comment has been added to your blog post "{{ $comment->commentable->title }}".
+{{ __('New comment has been added to your blog post') }} "{{ $comment->commentable->title }}".
 
 @component('mail::button', ['url' => route('posts.show', ['post' => $comment->commentable])])
-your blogpost
+{{ __('your blogpost') }}
 @endcomponent
 
 {{-- <img src="{{ $message->embed(storage_path("app/public") . '/' . $comment->user->image->path) }}" width=128 height=128> --}}
 @component('mail::button', ['url' => route('users.show', ['user' => $comment->user])])
-author profile
+{{ __('author profile') }}
 @endcomponent
 
 @component('mail::panel')
 {{ $comment->content }}
 @endcomponent
 
-Thanks,<br>
+{{ __('Thanks') }},<br>
 {{ config('app.name') }}
 @endcomponent
