@@ -6,12 +6,19 @@ use App\Comment;
 use App\BlogPost;
 use App\Events\CommentPosted;
 use App\Http\Requests\CommentValidation;
+use App\Http\Resources\Comment as CommentResource;
 
 class PostCommentController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth')->only(['store']);
+    }
+
+    public function index(BlogPost $post)
+    {
+        return CommentResource::collection($post->comments()->with('user')->get());
+        // return $post->comments()->with('user')->get();
     }
 
     /**

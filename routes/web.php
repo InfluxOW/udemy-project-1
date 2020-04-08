@@ -20,7 +20,7 @@ Route::resource('posts', 'PostController');
 Route::resource('users', 'UserController')->only('show', 'edit', 'update');
 Auth::routes();
 Route::get('/posts/tag/{tag}', 'PostTagController@index')->name('posts.tags.index');
-Route::resource('posts.comments', 'PostCommentController')->only('store');
+Route::resource('posts.comments', 'PostCommentController')->only('index', 'store');
 Route::resource('users.comments', 'UserCommentController')->only('store');
 Route::get('mailable', function () {
     $comment = App\Comment::find(1);
