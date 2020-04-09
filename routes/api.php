@@ -20,3 +20,17 @@ Route::middleware('auth:api')->get(
         return $request->user();
     }
 );
+
+Route::prefix('v1.0.0')->name('api.')->namespace('Api\V1_0_0')->group(function () {
+    Route::get('/status', function () {
+        return response()->json(['status' => 'OK']);
+    })->name('status');
+
+    Route::apiResource('posts.comments', 'PostCommentController');
+});
+
+Route::fallback(function () {
+    return response()->json([
+        'message' => 'Page has not been found!'
+    ], 404);
+})->name('api.fallback');

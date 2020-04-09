@@ -8,6 +8,7 @@ use App\Http\ViewComposers\Activity;
 use App\Observers\BlogPostObserver;
 use App\Observers\CommentObserver;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Resources\Comment as CommentResource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
 
         BlogPost::observe(BlogPostObserver::class);
         Comment::observe(CommentObserver::class);
+        CommentResource::withoutWrapping();
     }
 }

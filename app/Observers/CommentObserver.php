@@ -54,7 +54,7 @@ class CommentObserver
     public function deleting(Comment $comment)
     {
         if ($comment->commentable_type == 'App\BlogPost') {
-            Cache::forget("post-{$comment->commentabl->id}");
+            Cache::forget("post-{$comment->commentable->id}");
             Cache::forget("mostCommentedPosts");
         }
     }
