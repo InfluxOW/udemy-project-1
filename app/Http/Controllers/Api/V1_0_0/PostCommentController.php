@@ -14,7 +14,7 @@ class PostCommentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->only('store');
+        $this->middleware('auth:api')->only('store', 'destroy', 'update');
     }
 
     /**
@@ -58,7 +58,11 @@ class PostCommentController extends Controller
      */
     public function show(BlogPost $post, Comment $comment)
     {
-        return self::checkIfCommentBelongsToBlogPost($post, $comment) ? new CommentResource($comment) : [];
+        return $comment->commentable->id === $post->id
+        ? new CommentResource($comment)
+        : response()->json([
+                'message' => 'comment does not belong to the specified blogpost'
+            ]);
     }
 
     /**
@@ -72,11 +76,14 @@ class PostCommentController extends Controller
     {
         $this->authorize($comment);
 
-        if (self::checkIfCommentBelongsToBlogPost($post, $comment)) {
+        if ($comment->commentable->id === $post->id) {
             $comment->update(['content' => $request['content']]);
             return new CommentResource($comment);
         }
-        return [];
+
+        return response()->json([
+            'message' => 'comment does not belong to the specified blogpost'
+        ]);
     }
 
     /**
@@ -89,16 +96,12 @@ class PostCommentController extends Controller
     {
         $this->authorize($comment);
 
-        if (self::checkIfCommentBelongsToBlogPost($post, $comment)) {
+        if ($comment->commentable->id === $post->id) {
             $comment->delete();
             return response()->noContent();
         }
-        return [];
-    }
-
-    public static function checkIfCommentBelongsToBlogPost(BlogPost $post, Comment $comment)
-    {
-        $comments = $post->comments()->pluck('id')->all();
-        return in_array($comment->id, $comments);
+        return response()->json([
+            'message' => 'comment does not belong to the specified blogpost'
+        ]);
     }
 }

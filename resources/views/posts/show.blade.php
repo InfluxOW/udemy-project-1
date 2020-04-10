@@ -55,10 +55,10 @@
         <h4>{{__('Comments')}}</h4>
 
         <x-comment-form :route="route('posts.comments.store', compact('post'))"/>
-        <x-comment-list :item="$post"/>
+        <x-comment-list :comments="$post->comments()->with('user', 'tags')->paginate(5)"/>
+
 
     </div>
-
 
     <div class="col-4 text-center">
         @include('posts._activity')

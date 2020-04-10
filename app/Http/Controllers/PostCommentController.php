@@ -35,4 +35,16 @@ class PostCommentController extends Controller
 
         return redirect()->back();
     }
+
+    public function update(CommentValidation $request, BlogPost $post, Comment $comment)
+    {
+        $this->authorize($comment);
+
+        $validatedData = $request->validated();
+        $comment->update($validatedData);
+
+        flash(__('Comment was updated successfully!'))->success()->important();
+
+        return redirect()->back();
+    }
 }
