@@ -8,7 +8,7 @@
             <div class="col-4 text-center">
                 <div class="card mt-4">
                     <div class="card-body">
-                        <img src="{{ isset($user->image) ? $user->image->url() : '../../storage/avatars/default.jpg' }}" class="img-thumbnail avatar mb-3">
+                        <img src="{{ isset($user->image) ? $user->image->url : "https://udemy-project-1.s3.eu-west-3.amazonaws.com/avatars/default-user-image.png" }}" class="img-thumbnail avatar mb-3">
                         <h6>{{__('Upload thumbnail')}}</h6>
                         {{ Form::file('avatar', ['class' => 'form-control-file']) }}
                     </div>

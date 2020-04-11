@@ -9,7 +9,7 @@
         </div>
         <div class="col-4 text-center">
             <h3>{{ $user->name }}</h3>
-            <img src="{{ isset($user->image) ? $user->image->url() : '../storage/avatars/default.jpg' }}" class="img-thumbnail avatar">
+            <img src="{{ isset($user->image) ? $user->image->url : 'https://udemy-project-1.s3.eu-west-3.amazonaws.com/avatars/default-user-image.png' }}" class="img-thumbnail avatar">
         </div>
     </div>
 @endsection('content')

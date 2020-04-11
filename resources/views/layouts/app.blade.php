@@ -20,13 +20,13 @@
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="{{ route('home') }}">{{ __('Home') }}</a>
             <a class="p-2 text-dark" href="{{ route('contact') }}">{{ __('Contact') }}</a>
-            <a class="p-2 text-dark" href="{{ route('posts.index') }}">{{ __('Blog Posts') }}</a>
-            <a class="p-2 text-dark" href="{{ route('posts.create') }}">{{ __('Add') }}</a>
+            <a class="p-2 text-dark" href="{{ route('posts.index') }}">{{ __('Posts') }}</a>
 
             @guest
                 <a class="p-2 text-dark" href="{{ route('register') }}">{{ __('Register') }}</a>
                 <a class="p-2 text-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
             @else
+                <a class="p-2 text-dark" href="{{ route('posts.create') }}">{{ __('Add Post') }}</a>
                 <a class="p-2 text-dark" href="{{ route('users.show', ['user' => Auth::user()]) }}">
                     {{ __('Profile') }}
                 </a>

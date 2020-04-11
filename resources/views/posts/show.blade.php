@@ -15,7 +15,7 @@
                 </h1>
             </div>
             @if ($post->image)
-                <img src="{{ $post->image->url() }}"style="width:100%">
+                <img src="{{ $post->image->url }}"style="width:100%">
             @endif
         </div>
         <div class="container">
@@ -28,7 +28,7 @@
             </div>
             <div class="col-2">
                 <div class="badge">
-                    <img src="../storage/icons/views.png" class="img-fluid icon"> {{ $viewsTotal }}
+                    <img src="https://udemy-project-1.s3.eu-west-3.amazonaws.com/icons/views.png" class="img-fluid icon"> {{ $viewsTotal }}
                 </div>
             </div>
         </div>

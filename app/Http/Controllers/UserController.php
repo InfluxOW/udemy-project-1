@@ -46,14 +46,17 @@ class UserController extends Controller
     public function update(UserValidation $request, User $user)
     {
         if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store('avatars');
+            $path = Storage::disk('s3')->put("avatars", $request->file('avatar'), 'public');
 
             if ($user->image) {
-                Storage::delete($user->image->path);
+                Storage::disk('s3')->delete($user->image->path);
                 $user->image->delete();
             }
 
-            $image = Image::make(['path' => $path]);
+            $image = Image::make([
+                'path' => $path,
+                'url' => Storage::disk('s3')->url($path)
+                ]);
             $user->image()->save($image);
         }
 

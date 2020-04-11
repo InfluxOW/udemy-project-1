@@ -57,8 +57,11 @@ class PostController extends Controller
         $post->user()->associate($user)->save();
 
         if ($request->hasFile('thumbnail')) {
-            $path = $request->file('thumbnail')->store('thumbnails');
-            $image = Image::make(['path' => $path]);
+            $path = Storage::disk('s3')->put("thumbnails", $request->file('thumbnail'), 'public');
+            $image = Image::make([
+                'path' => $path,
+                'url' => Storage::disk('s3')->url($path)
+                ]);
             $post->image()->save($image);
         }
 
@@ -115,14 +118,17 @@ class PostController extends Controller
         $post->update($validatedData);
 
         if ($request->hasFile('thumbnail')) {
-            $path = $request->file('thumbnail')->store('thumbnails');
+            $path = Storage::disk('s3')->put("thumbnails", $request->file('thumbnail'), 'public');
 
             if ($post->image) {
-                Storage::delete($post->image->path);
+                Storage::disk('s3')->delete($post->image->path);
                 $post->image->delete();
             }
 
-            $image = Image::make(['path' => $path]);
+            $image = Image::make([
+                'path' => $path,
+                'url' => Storage::disk('s3')->url($path)
+                ]);
             $post->image()->save($image);
         }
 

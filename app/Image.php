@@ -7,15 +7,10 @@ use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
-    protected $fillable = ['path'];
+    protected $fillable = ['path', 'url'];
 
     public function imageable()
     {
         return $this->morphTo();
-    }
-
-    public function url()
-    {
-        return Storage::url($this->path);
     }
 }

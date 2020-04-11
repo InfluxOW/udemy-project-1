@@ -1,7 +1,7 @@
 {
     "Welcome to my test blog!": "Welcome to my test blog!",
-    "Blog Posts": "Blog Posts",
-    "Add": "Add",
+    "Posts": "Posts",
+    "Add Post": "Add Post",
     "Home": "Home",
     "Contact": "Contact",
     "Register": "Register",
@@ -29,7 +29,7 @@
     "Add comment": "Add comment",
     "Name:": "Name:",
     "Name": "Name",
-    "Here will be the contacts!" : "ЗHere will be the contacts!",
+    "Here will be the contacts!" : "Here will be the contacts!",
     "Here will be the content!": "Here will be the content!",
     "Save changes": "Save changes",
     "Profile": "Profile",
