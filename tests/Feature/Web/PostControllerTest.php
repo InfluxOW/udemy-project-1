@@ -49,6 +49,7 @@ class PostControllerTest extends TestCase
             ->post(route('posts.store'), $params)
             ->assertStatus(302)
             ->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('blog_posts', $params);
     }
 
     public function testUserStoreFail()
@@ -58,6 +59,7 @@ class PostControllerTest extends TestCase
             ->post(route('posts.index'), $params)
             ->assertStatus(302)
             ->assertSessionHasErrors();
+        $this->assertDatabaseMissing('blog_posts', $params);
     }
 
     public function testUserUpdateSuccess()

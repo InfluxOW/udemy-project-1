@@ -6,6 +6,7 @@ use App\BlogPost;
 use App\Events\PostCreated;
 use App\Http\Requests\PostValidation;
 use App\Image;
+use App\User;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+        // $this->authorizeResource(BlogPost::class, 'post');
     }
 
     /**

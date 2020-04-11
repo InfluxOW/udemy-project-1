@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-8">
             <x-comment-form :route="route('users.comments.store', compact('user'))"/>
-            <x-comment-list :item="$user"/>
+            <x-comment-list :comments="$user->comments()->with('user', 'tags')->paginate(5)"/>
         </div>
         <div class="col-4 text-center">
             <h3>{{ $user->name }}</h3>
