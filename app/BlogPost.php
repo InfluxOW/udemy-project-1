@@ -48,7 +48,7 @@ class BlogPost extends Model implements Viewable
 
     public function scopeMostCommented(Builder $query)
     {
-        return $query->withCount('comments')->orderBy('comments_cound', 'desc');
+        return $query->withCount('comments')->orderBy('comments_count', 'desc');
     }
 
     //Boot
