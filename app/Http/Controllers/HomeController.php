@@ -12,13 +12,13 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function contact()
+    public function info()
     {
-        return view('contact.index');
+        return view('info.index');
     }
 
-    public function contactSecret()
+    public function infoSecret()
     {
-        return view('contact.secret');
+        return view('info.secret');
     }
 }

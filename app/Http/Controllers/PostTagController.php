@@ -20,4 +20,12 @@ class PostTagController extends Controller
 
         return view('posts.index', compact('posts'));
     }
+
+    public function store($tagName, BlogPost $post, Request $request)
+    {
+        $tag = Tag::where('name', $tagName)->first();
+        $posts = $tag->blogposts()->latestWithRelations()->paginate(10);
+
+        return view('posts.index', compact('posts'));
+    }
 }

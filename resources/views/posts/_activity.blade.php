@@ -13,11 +13,29 @@
         </x-card>
     </div>
     <div class="row mt-3">
-        <x-card title="Most Active Users" subtitle="Users with the most posts"
-        :items="collect($mostActiveUsers)->pluck('name')"/>
+        <x-card title="Most Active Users" subtitle="Users with the most posts">
+            <x-slot name="items">
+                @foreach ($mostActiveUsers as $user)
+                <li class="list-group-item">
+                    <a href="{{ route('users.show', compact('user')) }}">
+                        {{ $user->name }}
+                    </a>
+                </li>
+                @endforeach
+            </x-slot>
+        </x-card>
     </div>
     <div class="row mt-3">
-        <x-card title="Most Active Last Month Users" subtitle="Users with the most posts last month"
-        :items="collect($mostActiveLastMonthUsers)->pluck('name')"/>
+        <x-card title="Most Active Last Month Users" subtitle="Users with the most posts last month">
+            <x-slot name="items">
+                @foreach ($mostActiveLastMonthUsers as $user)
+                <li class="list-group-item">
+                    <a href="{{ route('users.show', compact('user')) }}">
+                        {{ $user->name }}
+                    </a>
+                </li>
+                @endforeach
+            </x-slot>
+        </x-card>
     </div>
 </div>

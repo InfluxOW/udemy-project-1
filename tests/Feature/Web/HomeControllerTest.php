@@ -21,7 +21,7 @@ class HomeControllerTest extends TestCase
 
     public function testContactIndex()
     {
-        $response = $this->get(route('contact'));
+        $response = $this->get(route('info'));
         $response->assertStatus(200);
     }
 }

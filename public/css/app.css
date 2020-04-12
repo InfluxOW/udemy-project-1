@@ -10902,3 +10902,7 @@ a.text-dark:focus {
   height: 15px;
 }
 
+.low-width {
+  min-width: 50px;
+}
+

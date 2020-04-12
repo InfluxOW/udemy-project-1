@@ -1,7 +1,7 @@
 {
-    "Welcome to my test blog!": "Welcome to my test blog!",
+    "Hi! Welcome to my blog!": "Hi! Welcome to my blog!",
     "Posts": "Posts",
-    "Add Post": "Add Post",
+    "Add post": "Add post",
     "Home": "Home",
     "Contact": "Contact",
     "Register": "Register",
@@ -29,8 +29,8 @@
     "Add comment": "Add comment",
     "Name:": "Name:",
     "Name": "Name",
-    "Here will be the contacts!" : "Here will be the contacts!",
-    "Here will be the content!": "Here will be the content!",
+    "This is my second ever made web site. It was created as a Udemy course result." : "This is my second ever made web site. It was created as a Udemy course result.",
+    "It's really nice to see you there ♥": "It's really nice to see you there ♥",
     "Save changes": "Save changes",
     "Profile": "Profile",
     "Edit profile": "Edit profile",
@@ -47,5 +47,9 @@
     "Post was updated successfully!": "Post was updated successfully!",
     "User was updated successfully!": "Post was updated successfully!",
     "Language": "Language",
-    "Unique views in the last 24h": "Unique views in the last 24h"
+    "Unique views in the last 24h": "Unique views in the last 24h",
+    "You can find its code": "You can find its code",
+    "here": "here",
+    "Info": "Info",
+    "All posts": "All posts"
 }

@@ -19,7 +19,10 @@ class NotifyUsersAboutComment
     {
         //Sending emails
         //1) to post owner
-        SendMail::dispatch($event->comment->commentable->user, new NotifyOwnerPostWasCommented($event->comment))->onQueue('high');
+        SendMail::dispatch(
+            $event->comment->commentable->user,
+            new NotifyOwnerPostWasCommented($event->comment)
+        )->onQueue('high');
         //2) to every user who commented the post except owner
         NotifyUsersPostWasCommented::dispatch($event->comment)->onQueue('low');
     }

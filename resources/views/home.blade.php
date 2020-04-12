@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>{{ __("Welcome to my test blog!") }}</h1>
+<h1 class="display-4">{{ __("Hi! Welcome to my blog!") }}</h1>
 
-<p>{{__('Here will be the content!')}}</p>
+<p class="lead">{{__("It's really nice to see you there ♥")}}</p>
 @endsection

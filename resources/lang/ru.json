@@ -1,7 +1,7 @@
 {
-    "Welcome to my test blog!": "Добро пожаловать в мой тестовый блог!",
+    "Hi! Welcome to my blog!": "Привет! Добро пожаловать в мой блог!",
     "Posts": "Посты",
-    "Add Post": "Добавить пост",
+    "Add post": "Добавить пост",
     "Home": "Главная страница",
     "Contact": "Контакты",
     "Register": "Зарегистрироваться",
@@ -29,8 +29,8 @@
     "Add comment": "Добавить комментарий",
     "Name:": "Имя:",
     "Name": "Имя",
-    "Here will be the contacts!" : "Здесь будут контакты!",
-    "Here will be the content!": "Здесь будет контент",
+    "This is my second ever made web site. It was created as a Udemy course result." : "Это мой второй когда-либо созданный веб-сайт. Он является результатом завершения одного из Udemy курсов.",
+    "It's really nice to see you there ♥": "Очень приятно видеть тебя здесь ♥",
     "Save changes": "Сохранить изменения",
     "Profile": "Профиль",
     "Edit profile": "Редактировать профиль",
@@ -48,5 +48,9 @@
     "Post was updated successfully!": "Пост был успешно изменён!",
     "User was updated successfully!": "Пользователь был успешно изменён!",
     "Language": "Язык",
-    "Unique views in the last 24h": "Уникальные просмотры за 24 часа"
+    "Unique views in the last 24h": "Уникальные просмотры за 24 часа",
+    "You can find its code": "Вы можете найти его код",
+    "here": "здесь",
+    "Info": "Информация",
+    "All posts": "Все посты"
 }
