@@ -13,7 +13,8 @@ use Illuminate\Queue\SerializesModels;
 
 class NotifyUserPostWasCommented extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $comment;
     public $user;

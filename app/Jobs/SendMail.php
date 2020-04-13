@@ -14,7 +14,10 @@ use Spatie\RateLimitedMiddleware\RateLimited;
 
 class SendMail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public $tries = 3;
     public $timeout = 15;

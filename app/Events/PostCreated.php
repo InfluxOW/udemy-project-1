@@ -13,7 +13,9 @@ use Illuminate\Queue\SerializesModels;
 
 class PostCreated
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public $blogPost;
 
