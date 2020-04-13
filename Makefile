@@ -5,7 +5,7 @@ install:
 run:
 	php artisan serve
 lint:
-	composer phpcs -- --standard=PSR12 routes tests app
+	composer run-script phpcs -- --standard=PSR12 routes tests app
 setup: install
 	cp -n .env.example .env || true
 	php artisan key:generate
