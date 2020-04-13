@@ -20,8 +20,5 @@ jobs:
     - name: Setup project
       run: make setup
 
-    - name: Check lint
-      run: make lint
-
     - name: Execute tests
       run: make test
