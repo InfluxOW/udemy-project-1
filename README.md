@@ -1,7 +1,10 @@
 # Just A Blog
 [![Maintainability](https://api.codeclimate.com/v1/badges/24b04c0bac04a3341775/maintainability)](https://codeclimate.com/github/InfluxOW/udemy-project-1/maintainability)
-![Main workflow](https://github.com/InfluxOW/udemy-project-1/workflows/Main%20workflow/badge.svg)\
-[https://udemy-project-1.herokuapp.com/](https://udemy-project-1.herokuapp.com/)
+![Main workflow](https://github.com/InfluxOW/udemy-project-1/workflows/Main%20workflow/badge.svg)
+
+[https://udemy-project-1.herokuapp.com/](https://udemy-project-1.herokuapp.com/) \
+Simple forum made by [Udemy.com](https://www.udemy.com/course/laravel-beginner-fundamentals) course.
+
 # Development Setup
 1. Run `make setup` to install dependencies, generate .env file, create SQLite database, apply migrations.
 2. Run `make seed` if you want to seed the database.
